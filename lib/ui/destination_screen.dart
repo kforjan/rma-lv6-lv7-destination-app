@@ -1,8 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rma_lv6_7_destination_app/data/locations.dart';
 
-class DestinationScreen extends StatelessWidget {
+class DestinationScreen extends StatefulWidget {
   const DestinationScreen({Key key}) : super(key: key);
+
+  @override
+  _DestinationScreenState createState() => _DestinationScreenState();
+}
+
+class _DestinationScreenState extends State<DestinationScreen> {
+  final locations = Locations();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,7 @@ class DestinationScreen extends StatelessWidget {
         middle: Text('Moje destinacije'),
       ),
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: locations.getData().length,
         itemBuilder: (context, index) => Dismissible(
           background: Container(
             padding: EdgeInsets.only(right: 10),
@@ -32,7 +40,11 @@ class DestinationScreen extends StatelessWidget {
             ),
             color: Colors.red,
           ),
-          child: _buildCard('https://picsum.photos/75'), //TODO url
+          child: _buildCard(
+            locations.getData()[index].name,
+            locations.getData()[index].description,
+            locations.getData()[index].imageUrl,
+          ),
           key: UniqueKey(),
           confirmDismiss: (_) {
             return showCupertinoDialog(
@@ -65,7 +77,11 @@ class DestinationScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(String src) {
+  Widget _buildCard(
+    String name,
+    String description,
+    String src,
+  ) {
     return Container(
       decoration: BoxDecoration(
         border: Border(
