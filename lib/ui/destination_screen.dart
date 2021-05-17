@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rma_lv6_7_destination_app/data/locations.dart';
+import 'package:rma_lv6_7_destination_app/ui/add_destination_screen.dart';
 
 class DestinationScreen extends StatefulWidget {
   const DestinationScreen({Key key}) : super(key: key);
@@ -22,7 +23,13 @@ class _DestinationScreenState extends State<DestinationScreen> {
         ),
         trailing: CupertinoButton(
           child: Icon(CupertinoIcons.add),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AddDestinationScreen(rebuild),
+              ),
+            );
+          },
         ),
         middle: Text('Moje destinacije'),
       ),
@@ -101,9 +108,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text('xd'),
+              Text(name),
               Text(
-                'data',
+                description,
                 style: TextStyle(color: Colors.grey),
               ),
             ],
@@ -111,5 +118,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
         ],
       ),
     );
+  }
+
+  void rebuild() {
+    setState(() {});
   }
 }
