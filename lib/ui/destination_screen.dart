@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rma_lv6_7_destination_app/data/locations.dart';
 import 'package:rma_lv6_7_destination_app/ui/add_destination_screen.dart';
+import 'package:rma_lv6_7_destination_app/ui/destination_details_screen.dart';
 
 class DestinationScreen extends StatefulWidget {
   const DestinationScreen({Key key}) : super(key: key);
@@ -47,10 +48,20 @@ class _DestinationScreenState extends State<DestinationScreen> {
             ),
             color: Colors.red,
           ),
-          child: _buildCard(
-            locations.getData()[index].name,
-            locations.getData()[index].description,
-            locations.getData()[index].imageUrl,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      DestinationDetailsScreen(locations.getData()[index]),
+                ),
+              );
+            },
+            child: _buildCard(
+              locations.getData()[index].name,
+              locations.getData()[index].description,
+              locations.getData()[index].imageUrl,
+            ),
           ),
           key: UniqueKey(),
           confirmDismiss: (_) {
@@ -77,7 +88,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
               ),
             );
           },
-          onDismissed: (_) {},
+          onDismissed: (_) {
+            locations.deleteLocation(locations.getData()[index].id);
+          },
           direction: DismissDirection.endToStart,
         ),
       ),

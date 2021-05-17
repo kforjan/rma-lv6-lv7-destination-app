@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-class Location {
-  Location({
+class Destination {
+  Destination({
     @required this.name,
     @required this.description,
     @required this.imageUrl,
