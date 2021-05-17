@@ -1,4 +1,4 @@
-import 'package:rma_lv6_7_destination_app/models/location.dart';
+import 'package:rma_lv6_7_destination_app/models/destination.dart';
 
 class Destinations {
   static final Destinations _destinations = Destinations._internal();
@@ -7,9 +7,9 @@ class Destinations {
     return _destinations;
   }
 
-  var _destinationsData = <Location>[];
+  var _destinationsData = <Destination>[];
 
-  void addLocation(Location location) {
+  void addLocation(Destination location) {
     _destinationsData.add(location);
   }
 
@@ -17,7 +17,7 @@ class Destinations {
     _destinationsData.removeWhere((element) => element.id == id);
   }
 
-  List<Location> getData() {
+  List<Destination> getData() {
     return _destinationsData;
   }
 

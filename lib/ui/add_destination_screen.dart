@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rma_lv6_7_destination_app/data/locations.dart';
-import 'package:rma_lv6_7_destination_app/models/location.dart';
+import 'package:rma_lv6_7_destination_app/data/destinations.dart';
+import 'package:rma_lv6_7_destination_app/models/destination.dart';
 
 class AddDestinationScreen extends StatefulWidget {
   AddDestinationScreen(this.rebuild);
@@ -30,22 +30,42 @@ class _AddDestinationScreenState extends State<AddDestinationScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildNamedTextField('Naziv:', _nameController),
-                _buildNamedTextField('Opis:', _descriptionController),
-                _buildNamedTextField('URL:', _urlController),
-                _buildNamedTextField('Lat:', _latController),
-                _buildNamedTextField('Long:', _longController),
+                _buildNamedTextField(
+                  'Naziv:',
+                  _nameController,
+                  TextInputType.text,
+                ),
+                _buildNamedTextField(
+                  'Opis:',
+                  _descriptionController,
+                  TextInputType.text,
+                ),
+                _buildNamedTextField(
+                  'URL:',
+                  _urlController,
+                  TextInputType.url,
+                ),
+                _buildNamedTextField(
+                  'Lat:',
+                  _latController,
+                  TextInputType.number,
+                ),
+                _buildNamedTextField(
+                  'Long:',
+                  _longController,
+                  TextInputType.number,
+                ),
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: CupertinoButton(
                     onPressed: () {
-                      Locations().addLocation(
-                        Location(
+                      Destinations().addLocation(
+                        Destination(
                           name: _nameController.text,
                           imageUrl: _urlController.text,
                           description: _descriptionController.text,
-                          lat: _latController.text,
-                          long: _longController.text,
+                          lat: double.tryParse(_latController.text),
+                          long: double.tryParse(_longController.text),
                         ),
                       );
                       widget.rebuild();
@@ -62,7 +82,8 @@ class _AddDestinationScreenState extends State<AddDestinationScreen> {
     );
   }
 
-  Widget _buildNamedTextField(String title, TextEditingController controller) {
+  Widget _buildNamedTextField(
+      String title, TextEditingController controller, TextInputType inputType) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
@@ -76,6 +97,7 @@ class _AddDestinationScreenState extends State<AddDestinationScreen> {
           ),
           Flexible(
             child: CupertinoTextField(
+              keyboardType: inputType,
               controller: controller,
             ),
           )

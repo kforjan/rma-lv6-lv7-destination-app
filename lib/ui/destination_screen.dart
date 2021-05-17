@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rma_lv6_7_destination_app/data/locations.dart';
+import 'package:rma_lv6_7_destination_app/data/destinations.dart';
 import 'package:rma_lv6_7_destination_app/ui/add_destination_screen.dart';
 import 'package:rma_lv6_7_destination_app/ui/destination_details_screen.dart';
 
@@ -12,7 +12,7 @@ class DestinationScreen extends StatefulWidget {
 }
 
 class _DestinationScreenState extends State<DestinationScreen> {
-  final locations = Locations();
+  final locations = Destinations();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
       child: ListView.builder(
         itemCount: locations.getData().length,
         itemBuilder: (context, index) => Dismissible(
+          key: UniqueKey(),
           background: Container(
             padding: EdgeInsets.only(right: 10),
             child: Align(
@@ -63,7 +64,6 @@ class _DestinationScreenState extends State<DestinationScreen> {
               locations.getData()[index].imageUrl,
             ),
           ),
-          key: UniqueKey(),
           confirmDismiss: (_) {
             return showCupertinoDialog(
               context: context,
@@ -90,6 +90,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
           },
           onDismissed: (_) {
             locations.deleteLocation(locations.getData()[index].id);
+            setState(() {});
           },
           direction: DismissDirection.endToStart,
         ),
@@ -115,7 +116,14 @@ class _DestinationScreenState extends State<DestinationScreen> {
         children: [
           Padding(
             padding: EdgeInsets.all(20),
-            child: Image.network(src),
+            child: SizedBox(
+              height: 60,
+              width: 60,
+              child: Image.network(
+                src,
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

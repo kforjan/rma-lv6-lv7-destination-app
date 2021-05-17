@@ -13,6 +13,6 @@ class Destination {
   String name;
   String description;
   String imageUrl;
-  String lat;
-  String long;
+  double lat;
+  double long;
 }
