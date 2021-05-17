@@ -1,16 +1,25 @@
-# rma_lv6_7_destination_app
+# Destination app
 
-A new Flutter project.
+A Flutter application for saving destinations that you visited in the past made for Mobile Application Development class.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+* Add new destinations
+* Delete existing destinations
+* Display destination info and location on a map
 
-A few resources to get you started if this is your first Flutter project:
+## Setup
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+  1. Clone the repository using the link below:
+  ```
+  https://github.com/kforjan/rma-lv6-lv7-destination-app.git
+  ```
+  2. Go to the project root and execute the following commands:
+  ```
+  flutter pub get
+  flutter run
+  ```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Preview
+
+![Quote app preview](https://s3.gifyu.com/images/lv6-7-destination-preview.gif)
